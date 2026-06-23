@@ -622,8 +622,11 @@ class AppHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    import os
+
+    port = int(os.environ.get("PORT", 8000))
     read_data()
-    server = ThreadingHTTPServer(("0.0.0.0", 8000), AppHandler)
-    print("Stock Deploy Order running at http://localhost:8000")
-    print("Use your computer IP address on mobile, for example http://192.168.1.10:8000")
+    server = ThreadingHTTPServer(("0.0.0.0", port), AppHandler)
+    print(f"Stock Deploy Order running at http://localhost:{port}")
+    print(f"Use your computer IP address on mobile, for example http://192.168.1.10:{port}")
     server.serve_forever()
